@@ -35,7 +35,7 @@ Route::get('/', function(){
 
 Route::prefix('admin')->group( function() {
     Route::middleware('auth')->group( function () {
-        
+
 
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/', [PageController::class, 'dashboardOverview1'])->name('dashboard-overview-1');
@@ -97,16 +97,59 @@ Route::prefix('admin')->group( function() {
         Route::get('slider-page', [PageController::class, 'slider'])->name('slider');
         Route::get('image-zoom-page', [PageController::class, 'imageZoom'])->name('image-zoom');
 
+        // Start Of Users routes
+        Route::controller(UserController::class)->group(function () {
+            Route::get('/users', 'index')->name('user.index');
+            Route::get('/users/trashed', 'usersTrashed')->name('user.trashed');
+            Route::get('/user/{id}', 'show')->name('user.show');
+            Route::get('/user/create', 'create')->name('user.create');
+            Route::post('/user/{id}', 'store')->name('user.store');
+            Route::get('/user/edit/{id}', 'edit')->name('user.edit');
+            Route::put('/user/{id}', 'update')->name('user.update');
+            Route::delete('/user/{id}', 'destroy')->name('user.destroy');
+            Route::delete('/user/hdelete/{id}', 'hdelete')->name('user.hdelete');
+            Route::get('/user/resotre/{id}', 'restore')->name('user.restore');
+        });
+        // End Of Users routes
+
+        // Start Of Category routes
         Route::controller(Dashboard\CategoryController::class)->group(function () {
             Route::get('/categories', 'index')->name('category.index');
-            Route::get('/category/{id}', 'show')->name('category.show');
             Route::get('/category/create', 'create')->name('category.create');
             Route::post('/category/{id}', 'store')->name('category.store');
             Route::get('/category/{id}/edit', 'edit')->name('category.edit');
             Route::put('/category/{id}', 'update')->name('category.update');
             Route::delete('/category/{id}', 'destroy')->name('category.destroy');
         });
-});
+        // End Of Category routes
+
+
+        // Start Of SubCategory routes
+        Route::controller(Dashboard\SubCategoryController::class)->group(function () {
+            Route::get('/subcategories', 'index')->name('subcategory.index');
+            Route::get('/subcategory/create', 'create')->name('subcategory.create');
+            Route::post('/subcategory/{id}', 'store')->name('subcategory.store');
+            Route::get('/subcategory/{id}/edit', 'edit')->name('subcategory.edit');
+            Route::put('/subcategory/{id}', 'update')->name('subcategory.update');
+            Route::delete('/subcategory/{id}', 'destroy')->name('subcategory.destroy');
+        });
+        // End Of SubCategory routes
+
+        // Start Of Item routes
+        Route::controller(Dashboard\ItemController::class)->group(function () {
+            Route::get('/items', 'index')->name('item.index');
+            Route::get('/items/trashed', 'postsTrashed')->name('item.trashed');
+            Route::get('/item/{id}', 'show')->name('item.show');
+            Route::get('/item/create', 'create')->name('item.create');
+            Route::post('/item/{id}', 'store')->name('item.store');
+            Route::get('/item/edit/{id}', 'edit')->name('item.edit');
+            Route::put('/item/{id}', 'update')->name('item.update');
+            Route::delete('/item/{id}', 'destroy')->name('item.destroy');
+            Route::delete('/item/hdelete/{id}', 'hdelete')->name('item.hdelete');
+            Route::get('/item/resotre/{id}', 'restore')->name('item.restore');
+        });
+        // End Of Item routes
+    });
 });
 
 // Route::prefix('admin')->group(static function() {

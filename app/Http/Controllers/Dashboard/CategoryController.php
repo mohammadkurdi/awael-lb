@@ -5,82 +5,77 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Dashboard\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\StoreRequest;
+use App\Http\Requests\Category\UpdateRequest;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        // view all the category
+        $categories = Category::all();
+        return view('dashboard.categories.index')->with('categories',$categories);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        // create new category
+        return view('dashboard.categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(StoreRequest $request)
     {
-        //
+        // store new category
+        $image = $request->image;
+        $newImage = time() . $image->getClientOrginalName();
+        $image->move('uploads/categories', $newImage);
+
+        $category = Category::create([
+            'name'     =>  $request->name,
+            'image'    =>  'uploads/categories/' . $newImage,
+        ]);
+        return redirect()->route('category.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\site\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
+
+    public function edit($id)
     {
-        //
+         // edit category
+         $category = Category::find($id);
+         if($category == null){
+            return redirect()->back();
+        }
+        return view('dashboard.categories.edit')->with('category',$category);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\site\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
+
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        // update category
+        $category = Category::find($id);
+        if($request->has('image')){
+            $image = $request->image;
+            $newImage = time().$image->getClientOriginalName();
+            $image->move('uploads/categories',$newImage);
+            $category->image = 'uploads/categories/'.$newImage;
+        }
+        $category->name = $request->name;
+
+        return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\site\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\site\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        // delete category
+        $category = Category::find($id);
+        if($category == null){
+            return redirect()->back()->withErrors("There is no such category");
+        }
+        $category->delete($id);
+        return redirect()->back();
     }
 }

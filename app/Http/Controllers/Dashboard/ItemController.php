@@ -3,81 +3,77 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Dashboard\Item;
+use App\Models\Dashboard\ItemImage;
+use App\Models\Dashboard\ItemFile;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Item\StoreRequest;
+use App\Http\Requests\Item\UpdateRequest;
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        // view all the items
+        $items = Item::all();
+        return view('dashboard.items.index')->with('items',$items);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function usersTrashed()
+    {
+        // view only deleted items
+        $items = Item::onlyTrashed()->get();
+        return view('dashboard.items.trashed')->with('items',$items);
+    }
+
     public function create()
     {
-        //
-    }
+        // create new item
+        return view('dashboard.items.create');    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(StoreRequest $request)
     {
-        //
-    }
+        // store new item
+        $item = Item::create([
+            'name'     =>  $request->name,
+            'specifications'    =>  $request->specifications,
+            'sub_category_id'   =>  $request->sub_category_id
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Dashboard\Item  $item
-     * @return \Illuminate\Http\Response
-     */
+        $item = Item::latest()->first();
+        foreach ($request->images as $image) {
+            $newImage = time() . $image->getClientOrginalName();
+            $image->move('uploads/items', $newImage);
+            $itemimage = ItemImage::create([
+                'item_id'  =>   $item->id,
+                'image'    =>  'uploads/items/' . $newImage,
+            ]);
+        }
+
+        return redirect()->route('item.index');
+        }
+
+
     public function show(Item $item)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Dashboard\Item  $item
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Item $item)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dashboard\Item  $item
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Item $item)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Dashboard\Item  $item
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Item $item)
     {
         //
