@@ -34,9 +34,8 @@ class ItemController extends Controller
     public function create()
     {
         // create new item
-        $categories = Category::all();
         $subcategories = SubCategory::all();
-        return view('dashboard.items.create')->with('categories',$categories)->with('subcategories',$subcategories);
+        return view('dashboard.items.create')->with('subcategories',$subcategories);
     }
 
 
@@ -93,14 +92,15 @@ class ItemController extends Controller
     }
 
 
-    public function edit(Item $item)
+    public function edit($id)
     {
          // edit category
+         $subcategories = SubCategory::all();
          $item = Item::find($id);
-         if($category == null){
+         if($item == null){
             return redirect()->back();
         }
-        return view('dashboard.items.edit')->with('item',$item);
+        return view('dashboard.items.edit')->with('item',$item)->with('subcategories',$subcategories);
     }
 
 
@@ -115,14 +115,14 @@ class ItemController extends Controller
         $item->save();
 
         if($request->has('images')){
-            $itemimages = ItemImage::where('item_id',$item->id);
+            $itemimages = ItemImage::where('item_id',$item->id)->get();
             foreach($itemimages as $itemimage){
             $path = $itemimage->image;
             @unlink($path);
             $itemimage->delete();
             }
             foreach ($request->images as $image) {
-                $newImage = time() . $image->getClientOriginalName()();
+                $newImage = time() . $image->getClientOriginalName();
                 $image->move('uploads/items/images', $newImage);
                 $itemimage = ItemImage::create([
                     'item_id'  =>   $item->id,
@@ -131,13 +131,14 @@ class ItemController extends Controller
         }
     }
         if($request->has('data')){
-            $itemdata = ItemDatasheet::where('item_id',$item->id);
+            $itemdata = ItemDatasheet::where('item_id',$item->id)->first();
+            $data = $request->file('data');
             $path = $itemdata->file;
             @unlink($path);
             $itemdata->delete();
 
             $data = $request->data;
-            $newData = time() . $data->getClientOriginalName()();
+            $newData = time() . $data->getClientOriginalName();
             $data->move('uploads/items/files/datasheets', $newData);
             $itemdata = ItemDatasheet::create([
                 'item_id' => $item->id,
@@ -146,20 +147,21 @@ class ItemController extends Controller
         }
 
         if($request->has('manual')){
-            $itemmanual = ItemUsermanual::where('item_id',$item->id);
+            $itemmanual = ItemUsermanual::where('item_id',$item->id)->first();
+            $manual = $request->file('manual');
             $path = $itemmanual->file;
             @unlink($path);
             $itemmanual->delete();
 
             $manual = $request->manual;
-            $newManual = time() . $manual->getClientOriginalName()();
+            $newManual = time() . $manual->getClientOriginalName();
             $manual->move('uploads/items/files/datasheets', $newData);
             $itemmanual = ItemUsermanual::create([
                 'item_id' => $item->id,
                 'file'    => 'uploads/items/files/datasheets/' . $newManual,
             ]);
         }
-        return redirect()->back();
+        return redirect()->route('item.show',$item->id);
     }
 
 

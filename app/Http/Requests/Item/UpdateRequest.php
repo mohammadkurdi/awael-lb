@@ -26,9 +26,10 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required',
             'specifications' => 'required',
-            'sub_category_id' => 'required',
-            'images' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'subcategory_id' => 'required',
+            'images.*' => 'image|mimes:jpg,png,jpeg,gif,svg',
             'data' => 'mimes:pdf|max:51,200',
-            'manual' => 'mimes:pdf|max:51,200'        ];
+            'manual' => 'mimes:pdf|max:51,200'
+        ];
     }
 }
