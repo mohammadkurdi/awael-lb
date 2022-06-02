@@ -15,112 +15,40 @@ class SideMenu
         return [
             'dashboard' => [
                 'icon' => 'home',
+                'route_name' => 'dashboard-overview-1',
                 'title' => 'Dashboard',
-                'sub_menu' => [
-                    'dashboard-overview-1' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 1'
-                    ],
-                    'dashboard-overview-2' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-2',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 2'
-                    ],
-                    'dashboard-overview-3' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-3',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 3'
-                    ]
-                ]
-            ],
-            'menu-layout' => [
-                'icon' => 'box',
-                'title' => 'Menu Layout',
-                'sub_menu' => [
-                    'side-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Side Menu'
-                    ],
-                    'simple-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'simple-menu'
-                        ],
-                        'title' => 'Simple Menu'
-                    ],
-                    'top-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'top-menu'
-                        ],
-                        'title' => 'Top Menu'
-                    ]
-                ]
-            ],
-            'inbox' => [
-                'icon' => 'inbox',
-                'route_name' => 'inbox',
                 'params' => [
-                    'layout' => 'side-menu'
+                    'layout' => 'side-menu',
                 ],
-                'title' => 'Inbox'
             ],
-            'file-manager' => [
+
+            'categories' => [
                 'icon' => 'hard-drive',
-                'route_name' => 'file-manager',
+                'route_name' => 'category.index',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
-                'title' => 'File Manager'
+                'title' => 'Categories'
             ],
-            'point-of-sale' => [
+            'sub_categories' => [
                 'icon' => 'credit-card',
-                'route_name' => 'point-of-sale',
+                'route_name' => 'subcategory.index',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
-                'title' => 'Point of Sale'
+                'title' => 'Sub categories'
             ],
-            'chat' => [
-                'icon' => 'message-square',
-                'route_name' => 'chat',
+            'devider',
+
+            'products' => [
+                'icon' => 'trello',
+                'route_name' => 'item.index',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
-                'title' => 'Chat'
+                'title' => 'Products'
             ],
-            'post' => [
-                'icon' => 'file-text',
-                'route_name' => 'post',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Post'
-            ],
-            'calendar' => [
-                'icon' => 'calendar',
-                'route_name' => 'calendar',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Calendar'
-            ],
+
             'devider',
             'crud' => [
                 'icon' => 'edit',
@@ -147,242 +75,10 @@ class SideMenu
             'users' => [
                 'icon' => 'users',
                 'title' => 'Users',
-                'sub_menu' => [
-                    'users-layout-1' => [
-                        'icon' => '',
-                        'route_name' => 'users-layout-1',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Layout 1'
-                    ],
-                    'users-layout-2' => [
-                        'icon' => '',
-                        'route_name' => 'users-layout-2',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Layout 2'
-                    ],
-                    'users-layout-3' => [
-                        'icon' => '',
-                        'route_name' => 'users-layout-3',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Layout 3'
-                    ]
-                ]
-            ],
-            'profile' => [
-                'icon' => 'trello',
-                'title' => 'Profile',
-                'sub_menu' => [
-                    'profile-overview-1' => [
-                        'icon' => '',
-                        'route_name' => 'profile-overview-1',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Overview 1'
-                    ],
-                    'profile-overview-2' => [
-                        'icon' => '',
-                        'route_name' => 'profile-overview-2',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Overview 2'
-                    ],
-                    'profile-overview-3' => [
-                        'icon' => '',
-                        'route_name' => 'profile-overview-3',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Overview 3'
-                    ]
-                ]
-            ],
-            'pages' => [
-                'icon' => 'layout',
-                'title' => 'Pages',
-                'sub_menu' => [
-                    'wizards' => [
-                        'icon' => '',
-                        'title' => 'Wizards',
-                        'sub_menu' => [
-                            'wizard-layout-1' => [
-                                'icon' => '',
-                                'route_name' => 'wizard-layout-1',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 1'
-                            ],
-                            'wizard-layout-2' => [
-                                'icon' => '',
-                                'route_name' => 'wizard-layout-2',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 2'
-                            ],
-                            'wizard-layout-3' => [
-                                'icon' => '',
-                                'route_name' => 'wizard-layout-3',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 3'
-                            ]
-                        ]
-                    ],
-                    'blog' => [
-                        'icon' => '',
-                        'title' => 'Blog',
-                        'sub_menu' => [
-                            'blog-layout-1' => [
-                                'icon' => '',
-                                'route_name' => 'blog-layout-1',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 1'
-                            ],
-                            'blog-layout-2' => [
-                                'icon' => '',
-                                'route_name' => 'blog-layout-2',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 2'
-                            ],
-                            'blog-layout-3' => [
-                                'icon' => '',
-                                'route_name' => 'blog-layout-3',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 3'
-                            ]
-                        ]
-                    ],
-                    'pricing' => [
-                        'icon' => '',
-                        'title' => 'Pricing',
-                        'sub_menu' => [
-                            'pricing-layout-1' => [
-                                'icon' => '',
-                                'route_name' => 'pricing-layout-1',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 1'
-                            ],
-                            'pricing-layout-2' => [
-                                'icon' => '',
-                                'route_name' => 'pricing-layout-2',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 2'
-                            ]
-                        ]
-                    ],
-                    'invoice' => [
-                        'icon' => '',
-                        'title' => 'Invoice',
-                        'sub_menu' => [
-                            'invoice-layout-1' => [
-                                'icon' => '',
-                                'route_name' => 'invoice-layout-1',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 1'
-                            ],
-                            'invoice-layout-2' => [
-                                'icon' => '',
-                                'route_name' => 'invoice-layout-2',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 2'
-                            ]
-                        ]
-                    ],
-                    'faq' => [
-                        'icon' => '',
-                        'title' => 'FAQ',
-                        'sub_menu' => [
-                            'faq-layout-1' => [
-                                'icon' => '',
-                                'route_name' => 'faq-layout-1',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 1'
-                            ],
-                            'faq-layout-2' => [
-                                'icon' => '',
-                                'route_name' => 'faq-layout-2',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 2'
-                            ],
-                            'faq-layout-3' => [
-                                'icon' => '',
-                                'route_name' => 'faq-layout-3',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Layout 3'
-                            ]
-                        ]
-                    ],
-                    'login' => [
-                        'icon' => '',
-                        'route_name' => 'login',
-                        'params' => [
-                            'layout' => 'login'
-                        ],
-                        'title' => 'Login'
-                    ],
-                    'register' => [
-                        'icon' => '',
-                        'route_name' => 'register',
-                        'params' => [
-                            'layout' => 'login'
-                        ],
-                        'title' => 'Register'
-                    ],
-                    'error-page' => [
-                        'icon' => '',
-                        'route_name' => 'error-page',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Error Page'
-                    ],
-                    'update-profile' => [
-                        'icon' => '',
-                        'route_name' => 'update-profile',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Update profile'
-                    ],
-                    'change-password' => [
-                        'icon' => '',
-                        'route_name' => 'change-password',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Change Password'
-                    ]
-                ]
+                'route_name' => 'users-layout-2',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
             ],
             'devider',
             'components' => [

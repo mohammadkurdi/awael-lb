@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         // store new user
         $photo = $request->photo;
-        $newPhoto = time() . $photo->getClientOrginalName();
+        $newPhoto = time() . $photo->getClientOriginalName()();
         $photo->move('uploads/users', $newPhoto);
 
         $user = User::create([

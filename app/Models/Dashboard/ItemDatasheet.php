@@ -5,12 +5,12 @@ namespace App\Models\Dashboard;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemFile extends Model
+class ItemDatasheet extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
-        'item_id', 'file' , 'type'
+    protected $fillable = [
+        'item_id', 'file'
     ];
 
 

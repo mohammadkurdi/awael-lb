@@ -65,7 +65,7 @@
         </div>
     </div>
     <!-- END: Search -->
-    <!-- BEGIN: Notifications -->
+    {{-- <!-- BEGIN: Notifications -->
     <div class="intro-x dropdown mr-auto sm:mr-6">
         <div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button" aria-expanded="false">
             <i data-feather="bell" class="notification__icon dark:text-gray-300"></i>
@@ -91,7 +91,7 @@
             </div>
         </div>
     </div>
-    <!-- END: Notifications -->
+    <!-- END: Notifications --> --}}
     <!-- BEGIN: Account Menu -->
     <div class="intro-x dropdown w-8 h-8">
         <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button" aria-expanded="false">

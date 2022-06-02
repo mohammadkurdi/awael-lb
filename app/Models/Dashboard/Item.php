@@ -11,7 +11,7 @@ class Item extends Model
     use HasFactory; use SoftDeletes;
 
     protected $fillable = [
-        'name', 'specifications', 'sub_category_id'
+        'name', 'specifications', 'subcategory_id'
     ];
 
     public function item_images()
@@ -19,12 +19,17 @@ class Item extends Model
         return $this->hasMany(ItemImage::class);
     }
 
-    public function item_files()
+    public function item_datasheet()
     {
-        return $this->hasMany(ItemFile::class);
+        return $this->hasOne(ItemDatasheet::class);
     }
 
-    public function sub_category()
+    public function item_usermanual()
+    {
+        return $this->hasOne(ItemUsermanual::class);
+    }
+
+    public function subcategory()
     {
         return $this->belongsTo(SubCategory::class);
     }

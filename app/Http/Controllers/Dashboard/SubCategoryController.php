@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Dashboard\SubCategory;
+use App\Models\Dashboard\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubCategory\StoreRequest;
@@ -14,7 +15,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         // view all the subcategory
-        $subcategories = SubCategory::all();
+        $subcategories = SubCategory::select('*')->paginate(10);
         return view('dashboard.subcategories.index')->with('subcategories',$subcategories);
     }
 
@@ -22,7 +23,8 @@ class SubCategoryController extends Controller
     public function create()
     {
         // create new subcategory
-        return view('dashboard.subcategories.create');
+        $categories = Category::all();
+        return view('dashboard.subcategories.create')->with('categories',$categories);
     }
 
 
@@ -30,7 +32,7 @@ class SubCategoryController extends Controller
     {
         // store new subcategory
         $image = $request->image;
-        $newImage = time() . $image->getClientOrginalName();
+        $newImage = time() . $image->getClientOriginalName();
         $image->move('uploads/subcategories', $newImage);
 
         $subcategory = SubCategory::create([
@@ -45,11 +47,12 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
          // show category
+         $categories = Category::all();
          $subcategory = SubCategory::find($id);
          if($subcategory == null){
             return redirect()->back();
         }
-        return view('dashboard.subcategories.edit')->with('subcategory',$subcategory);
+        return view('dashboard.subcategories.edit')->with('subcategory',$subcategory)->with('categories',$categories);
     }
 
 
@@ -58,6 +61,7 @@ class SubCategoryController extends Controller
         // update subcategory
         $subcategory = SubCategory::find($id);
         if($request->has('image')){
+            @unlink($subcategory->image);
             $image = $request->image;
             $newImage = time().$image->getClientOriginalName();
             $image->move('uploads/subcategories',$newImage);
@@ -65,6 +69,7 @@ class SubCategoryController extends Controller
         }
         $subcategory->name = $request->name;
         $subcategory->category_id = $request->category_id;
+        $subcategory->save();
 
         return redirect()->back();
     }

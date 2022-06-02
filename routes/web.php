@@ -103,7 +103,7 @@ Route::prefix('admin')->group( function() {
             Route::get('/users/trashed', 'usersTrashed')->name('user.trashed');
             Route::get('/user/{id}', 'show')->name('user.show');
             Route::get('/user/create', 'create')->name('user.create');
-            Route::post('/user/{id}', 'store')->name('user.store');
+            Route::post('/user', 'store')->name('user.store');
             Route::get('/user/edit/{id}', 'edit')->name('user.edit');
             Route::put('/user/{id}', 'update')->name('user.update');
             Route::delete('/user/{id}', 'destroy')->name('user.destroy');
@@ -116,7 +116,7 @@ Route::prefix('admin')->group( function() {
         Route::controller(Dashboard\CategoryController::class)->group(function () {
             Route::get('/categories', 'index')->name('category.index');
             Route::get('/category/create', 'create')->name('category.create');
-            Route::post('/category/{id}', 'store')->name('category.store');
+            Route::post('/category', 'store')->name('category.store');
             Route::get('/category/{id}/edit', 'edit')->name('category.edit');
             Route::put('/category/{id}', 'update')->name('category.update');
             Route::delete('/category/{id}', 'destroy')->name('category.destroy');
@@ -128,7 +128,7 @@ Route::prefix('admin')->group( function() {
         Route::controller(Dashboard\SubCategoryController::class)->group(function () {
             Route::get('/subcategories', 'index')->name('subcategory.index');
             Route::get('/subcategory/create', 'create')->name('subcategory.create');
-            Route::post('/subcategory/{id}', 'store')->name('subcategory.store');
+            Route::post('/subcategory', 'store')->name('subcategory.store');
             Route::get('/subcategory/{id}/edit', 'edit')->name('subcategory.edit');
             Route::put('/subcategory/{id}', 'update')->name('subcategory.update');
             Route::delete('/subcategory/{id}', 'destroy')->name('subcategory.destroy');
@@ -138,10 +138,10 @@ Route::prefix('admin')->group( function() {
         // Start Of Item routes
         Route::controller(Dashboard\ItemController::class)->group(function () {
             Route::get('/items', 'index')->name('item.index');
-            Route::get('/items/trashed', 'postsTrashed')->name('item.trashed');
+            Route::get('/items/trashed', 'itemsTrashed')->name('item.trashed');
             Route::get('/item/{id}', 'show')->name('item.show');
-            Route::get('/item/create', 'create')->name('item.create');
-            Route::post('/item/{id}', 'store')->name('item.store');
+            Route::get('/items/create', 'create')->name('item.create');
+            Route::post('/item', 'store')->name('item.store');
             Route::get('/item/edit/{id}', 'edit')->name('item.edit');
             Route::put('/item/{id}', 'update')->name('item.update');
             Route::delete('/item/{id}', 'destroy')->name('item.destroy');

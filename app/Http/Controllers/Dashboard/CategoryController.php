@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         // view all the category
-        $categories = Category::all();
+        $categories = Category::select('*')->paginate(10);
         return view('dashboard.categories.index')->with('categories',$categories);
     }
 
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         // store new category
         $image = $request->image;
-        $newImage = time() . $image->getClientOrginalName();
+        $newImage = time() . $image->getClientOriginalName();
         $image->move('uploads/categories', $newImage);
 
         $category = Category::create([
@@ -57,12 +57,14 @@ class CategoryController extends Controller
         // update category
         $category = Category::find($id);
         if($request->has('image')){
+            @unlink($category->image);
             $image = $request->image;
             $newImage = time().$image->getClientOriginalName();
             $image->move('uploads/categories',$newImage);
             $category->image = 'uploads/categories/'.$newImage;
         }
         $category->name = $request->name;
+        $category->save();
 
         return redirect()->back();
     }

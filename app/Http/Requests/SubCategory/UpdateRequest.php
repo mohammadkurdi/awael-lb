@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             //
             'name' => 'required | max:255',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'category_id' => 'required'
         ];
     }
