@@ -19,6 +19,14 @@ class CreateCategoriesTable extends Migration
             $table->string('image');
             $table->timestamps();
         });
+
+        Schema::create('subcategories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('category_id');
+            $table->string('name');
+            $table->string('image');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,5 +37,6 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categories');
+        Schema::dropIfExists('subcategories');
     }
 }

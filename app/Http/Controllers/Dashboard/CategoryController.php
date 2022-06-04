@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\StoreRequest;
 use App\Http\Requests\Category\UpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -14,8 +15,10 @@ class CategoryController extends Controller
     public function index()
     {
         // view all the category
+        if((Auth::user())->hasRole('admin')){
         $categories = Category::select('*')->paginate(10);
         return view('dashboard.categories.index')->with('categories',$categories);
+        }
     }
 
 

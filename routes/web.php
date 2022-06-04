@@ -112,6 +112,15 @@ Route::prefix('admin')->group( function() {
         });
         // End Of Users routes
 
+        // Start Of Roles & Permissions routes
+
+        Route::get('/laratrust', function(){
+            if((Auth::user())->hasRole('admin')){
+                return redirect('/laratrust');
+            }
+        })->name('laratrust');
+        // End Of Roles & Permissions routes
+
         // Start Of Category routes
         Route::controller(Dashboard\CategoryController::class)->group(function () {
             Route::get('/categories', 'index')->name('category.index');

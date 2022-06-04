@@ -89,6 +89,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->gender = $request->gender;
         $user->active = $request->active;
+        $user->save();
 
         return redirect()->back();
     }

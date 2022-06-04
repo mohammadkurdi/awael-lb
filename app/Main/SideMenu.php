@@ -72,6 +72,7 @@ class SideMenu
                     ]
                 ]
             ],
+
             'users' => [
                 'icon' => 'users',
                 'title' => 'Users',
@@ -80,7 +81,17 @@ class SideMenu
                     'layout' => 'side-menu'
                 ],
             ],
+
+            'roles' => [
+                'icon' => 'star',
+                'title' => 'Roles & permissions',
+                'route_name' => 'laratrust',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+            ],
             'devider',
+
             'components' => [
                 'icon' => 'inbox',
                 'title' => 'Components',

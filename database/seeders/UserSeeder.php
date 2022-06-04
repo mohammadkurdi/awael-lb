@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -16,8 +17,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Default credentials
-        \App\Models\User::insert([
-            [
+       $user=User::create([
                 'name' => 'admin',
                 'email' => 'admin@awael-me.com',
                 'email_verified_at' => now(),
@@ -25,9 +25,9 @@ class UserSeeder extends Seeder
                 'gender' => 'male',
                 'active' => 1,
                 'remember_token' => Str::random(10)
-            ]
         ]);
+        $admin = Role::where('id',1)->first();
+        $user->attachRole($admin);
 
-        // Fake users
     }
 }
