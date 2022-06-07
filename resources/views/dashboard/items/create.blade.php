@@ -30,9 +30,9 @@
                     <div>
                         <label> Category</label>
                         <div class="mt-2">
-                            <select data-placeholder="Select your category" class="tom-select w-full" name="subcategory_id">
-                                @foreach ($subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}">{{$subcategory->category->name .' --> '. $subcategory->name }}</option>
+                            <select data-placeholder="Select your category" class="tom-select w-full" name="Subcategory_id">
+                                @foreach ($subcategories as $Subcategory)
+                                    <option value="{{ $Subcategory->id }}">{{$Subcategory->category->name .' --> '. $Subcategory->name }}</option>
                                 @endforeach
                             </select>
                         </div>

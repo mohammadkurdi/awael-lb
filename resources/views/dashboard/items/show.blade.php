@@ -5,6 +5,13 @@
 @endsection
 
 @section('subcontent')
+@ability('admin|dataEntry','items-edit')
+
+<a class="flex items-center mr-3" href="{{ route('item.edit',$item->id) }}">
+    <button class="btn btn-primary shadow-md mr-2" ><i data-feather="check-square" class="w-5 h-5 mr-1"></i>Edit</button>
+</a>
+@endability
+
 
     <h2>{{ $item->name }}</h2>
 

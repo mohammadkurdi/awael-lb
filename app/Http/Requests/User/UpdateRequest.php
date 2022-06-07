@@ -28,9 +28,7 @@ class UpdateRequest extends FormRequest
             'name' => 'required | max:255',
             'email' => 'required',
             'password' => 'confirmed | required',
-            'gender' => 'required',
-            'active' => 'required',
-            'photo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+            'photo' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ];
     }
 }

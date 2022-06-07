@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required',
             'specifications' => 'required',
-            'subcategory_id' => 'required',
+            'Subcategory_id' => 'required',
             'images.*' => 'image|mimes:jpg,png,jpeg,gif,svg',
             'data' => 'mimes:pdf|max:51,200',
             'manual' => 'mimes:pdf|max:51,200'

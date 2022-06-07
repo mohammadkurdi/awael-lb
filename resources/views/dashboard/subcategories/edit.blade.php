@@ -1,23 +1,23 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Edit subcategory</title>
+    <title>Edit Subcategory</title>
 @endsection
 
 @section('subcontent')
     <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">Edit subcategory</h2>
+        <h2 class="text-lg font-medium mr-auto">Edit Subcategory</h2>
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 lg:col-span-6">
             <!-- BEGIN: Form Layout -->
-            <form action="{{ route('subcategory.update',$subcategory->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('subcategory.update',$Subcategory->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="intro-y box p-5">
                     <div>
                         <label for="crud-form-1" class="form-label">Name</label>
-                        <input id="crud-form-1" type="text" class="form-control w-full" placeholder="Input text" name="name" required value="{{ $subcategory->name }}">
+                        <input id="crud-form-1" type="text" class="form-control w-full" placeholder="Input text" name="name" required value="{{ $Subcategory->name }}">
                     </div>
 
                     <br>
@@ -29,7 +29,7 @@
                             <select data-placeholder="Select your category" class="tom-select w-full" name="category_id">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
-                                        @if ($category->id == $subcategory->category_id)
+                                        @if ($category->id == $Subcategory->category_id)
                                             selected="selected"
                                         @endif
                                         >
@@ -49,7 +49,7 @@
                                 <br>
                                     <div class="flex">
                                         <div class="w-40 h-40 image-fit zoom-in">
-                                            <img class="tooltip " src="{{ asset($subcategory->image) }}">
+                                            <img class="tooltip " src="{{ asset($Subcategory->image) }}">
                                         </div>
                                     </div>
                                 <br>

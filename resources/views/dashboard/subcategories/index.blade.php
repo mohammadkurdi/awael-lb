@@ -8,27 +8,15 @@
     <h2 class="intro-y text-lg font-medium mt-10">Subcategories</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+
+            @ability('admin|dataEntry','subcategories-create')
             <a href="{{ route('subcategory.create') }}"><button class="btn btn-primary shadow-md mr-2" >Add New Subcategory</button></a>
-            <div class="dropdown">
-                <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
-                    <span class="w-5 h-5 flex items-center justify-center">
-                        <i class="w-4 h-4" data-feather="plus"></i>
-                    </span>
+            @endability
+            <a href="{{ route('subcategory.export') }}">
+                <button class=" btn px-2 box text-gray-700 dark:text-gray-300" >
+                    <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to Excel
                 </button>
-                <div class="dropdown-menu w-40">
-                    <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
-                        <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
-                            <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print
-                        </a>
-                        <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
-                            <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to Excel
-                        </a>
-                        <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
-                            <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to PDF
-                        </a>
-                    </div>
-                </div>
-            </div>
+            </a>
             <div class="hidden md:block mx-auto text-gray-600"></div>
             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="w-56 relative text-gray-700 dark:text-gray-300">
@@ -53,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($subcategories as $subcategory)
+                    @foreach ($subcategories as $Subcategory)
                         <tr class="intro-x">
                             <td class="w-40">
                                 {{ ++$i }}
@@ -61,22 +49,28 @@
                             <td class="w-40">
                                 <div class="flex">
                                     <div class="w-10 h-10 image-fit zoom-in">
-                                        <img class="tooltip rounded-full" src="{{ asset($subcategory->image) }}">
+                                        <img class="tooltip rounded-full" src="{{ asset($Subcategory->image) }}">
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $subcategory->name }}</a>
+                                <a  class="font-medium whitespace-nowrap">{{ $Subcategory->name }}</a>
                             </td>
                             <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $subcategory->category->name }}</a>
+                                <a  class="font-medium whitespace-nowrap">{{ $Subcategory->category->name }}</a>
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3" href="{{ route('subcategory.edit',$subcategory->id) }}">
+                                    <a class="flex items-center mr-3" href="{{ route('subcategory.exportItems',$Subcategory->id) }}">
+                                        <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export
+                                    </a>
+                                    @ability('admin|dataEntry','subcategories-edit')
+                                    <a class="flex items-center mr-3" href="{{ route('subcategory.edit',$Subcategory->id) }}">
                                         <i data-feather="check-square" class="w-5 h-5 mr-1"></i> Edit
                                     </a>
-                                    <form action="{{ route('subcategory.destroy',$subcategory->id) }}" method="POST" onsubmit="return confirm('Do you really want to delete this category?')">
+                                    @endability
+                                    @ability('admin|dataEntry','subcategories-delete')
+                                    <form action="{{ route('subcategory.destroy',$Subcategory->id) }}" method="POST" onsubmit="return confirm('Do you really want to delete this category?')">
                                         @csrf
                                         @method('DELETE')
                                         <a class="flex items-center text-theme-6">
@@ -85,6 +79,7 @@
                                             </button>
                                         </a>
                                     </form>
+                                    @endability
                                 </div>
                             </td>
                         </tr>

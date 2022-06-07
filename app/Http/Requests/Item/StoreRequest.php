@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
             //
             'name' => 'required',
             'specifications' => 'required',
-            'subcategory_id' => 'required',
+            'Subcategory_id' => 'required',
             'images.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'data' => 'mimes:pdf',
             'manual' => 'mimes:pdf'

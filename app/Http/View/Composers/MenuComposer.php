@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use App\Main\TopMenu;
 use App\Main\SideMenu;
 use App\Main\SimpleMenu;
+use Illuminate\Support\Facades\Auth;
 
 class MenuComposer
 {
@@ -15,6 +16,12 @@ class MenuComposer
      * @param  View  $view
      * @return void
      */
+    public function __construct()
+    {
+        if (!Auth::check()) return 'NO';
+    }
+
+
     public function compose(View $view)
     {
         $pageName = request()->route()->getName();

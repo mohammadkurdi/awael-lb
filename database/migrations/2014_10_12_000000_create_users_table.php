@@ -17,11 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('photo')->nullable();
-            $table->string('gender');
-            $table->integer('active');
+            $table->string('photo')->default('uploads/users/awael.png');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

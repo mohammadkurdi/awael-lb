@@ -20,7 +20,6 @@ return [
             'roles' => 'c,r,u,d'
         ],
         'dataEntry' => [
-            'users' => 'r',
             'categories' => 'c,r,u,d',
             'subcategories' => 'c,r,u,d',
             'items' => 'c,r,u,d',

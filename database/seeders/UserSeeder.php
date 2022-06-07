@@ -20,10 +20,7 @@ class UserSeeder extends Seeder
        $user=User::create([
                 'name' => 'admin',
                 'email' => 'admin@awael-me.com',
-                'email_verified_at' => now(),
                 'password' => '$2a$12$.iqjYRkSOwyVqCVegShvqOSS1SMDj8wjnW6ZZ9HXuBCkJ1fpVBvSK', // password
-                'gender' => 'male',
-                'active' => 1,
                 'remember_token' => Str::random(10)
         ]);
         $admin = Role::where('id',1)->first();

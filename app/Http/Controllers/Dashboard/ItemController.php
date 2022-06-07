@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Dashboard\Item;
 use App\Models\Dashboard\Category;
-use App\Models\Dashboard\SubCategory;
+use App\Models\Dashboard\Subcategory;
 use App\Models\Dashboard\ItemImage;
 use App\Models\Dashboard\ItemDatasheet;
 use App\Models\Dashboard\ItemUsermanual;
@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Item\StoreRequest;
 use App\Http\Requests\Item\UpdateRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Exports\ItemsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ItemController extends Controller
 {
@@ -19,9 +23,14 @@ class ItemController extends Controller
     public function index()
     {
         // view all the items
-        $items = Item::select('*')->paginate(10);;
-        $items_images = ItemImage::all();
-        return view('dashboard.items.index')->with('items',$items)->with('items_images',$items_images);
+        if((Auth::user())->ability('admin|dataEntry|readOnly', 'items-read')){
+            $items = Item::select('*')->paginate(10);;
+            $items_images = ItemImage::all();
+            return view('dashboard.items.index')->with('items',$items)->with('items_images',$items_images);
+        }
+        else {
+            return view('dashboard.permission_denied');
+        }
     }
 
     public function itemsTrashed()
@@ -34,8 +43,13 @@ class ItemController extends Controller
     public function create()
     {
         // create new item
-        $subcategories = SubCategory::all();
+        if((Auth::user())->ability('admin|dataEntry', 'items-create')){
+        $subcategories = Subcategory::all();
         return view('dashboard.items.create')->with('subcategories',$subcategories);
+        }
+        else {
+        return view('dashboard.permission_denied');
+    }
     }
 
 
@@ -45,7 +59,7 @@ class ItemController extends Controller
         $item = Item::create([
             'name'     =>  $request->name,
             'specifications'    =>  $request->specifications,
-            'subcategory_id'   =>  $request->subcategory_id
+            'Subcategory_id'   =>  $request->Subcategory_id
         ]);
 
         // store all item images
@@ -78,29 +92,42 @@ class ItemController extends Controller
         ]);
 
         return redirect()->route('item.index');
+
         }
 
 
     public function show($id)
     {
         // show item
+        if((Auth::user())->ability('admin|dataEntry|readOnly', 'items-read')){
+
         $item = Item::find($id);
         $itemimages = ItemImage::where('item_id',$id)->get();
         $itemdata = ItemDatasheet::where('item_id',$id)->first();
         $itemmanual = ItemUsermanual::where('item_id',$id)->first();
         return view('dashboard.items.show')->with('item',$item)->with('itemimages',$itemimages)->with('itemdata',$itemdata)->with('itemmanual',$itemmanual);
+        }
+        else {
+            return view('dashboard.permission_denied');
+        }
     }
 
 
     public function edit($id)
     {
          // edit category
-         $subcategories = SubCategory::all();
+         if((Auth::user())->ability('admin|dataEntry', 'items-edit')){
+
+         $subcategories = Subcategory::all();
          $item = Item::find($id);
          if($item == null){
             return redirect()->back();
         }
         return view('dashboard.items.edit')->with('item',$item)->with('subcategories',$subcategories);
+    }
+        else {
+            return view('dashboard.permission_denied');
+        }
     }
 
 
@@ -111,7 +138,7 @@ class ItemController extends Controller
 
         $item->name = $request->name;
         $item->specifications =  $request->specifications;
-        $item->subcategory_id =  $request->subcategory_id;
+        $item->Subcategory_id =  $request->Subcategory_id;
         $item->save();
 
         if($request->has('images')){
@@ -168,18 +195,26 @@ class ItemController extends Controller
     public function destroy($id)
     {
         // soft delete user
+        if((Auth::user())->ability('admin|dataEntry', 'items-delete')){
+
         $item = Item::find($id);
         if($item == null){
             return redirect()->back()->withErrors("There is no such user");
         }
         $item->delete($id);
         return redirect()->back();
+        }
+        else {
+            return view('dashboard.permission_denied');
+        }
     }
 
 
     public function hdelete($id)
     {
         // hard delete user
+        if((Auth::user())->ability('admin|dataEntry', 'items-delete')){
+
         $item = Item::withTrashed()->where('id',$id)->first();
         $itemimages = ItemImage::where('item_id',$item->id);
         foreach($itemimages as $itemimage){
@@ -191,14 +226,29 @@ class ItemController extends Controller
         $itemmanual->delete();
         $item->forceDelete();
         return redirect()->back();
+        }
+        else {
+            return view('dashboard.permission_denied');
+        }
     }
 
 
     public function restore($id)
     {
         // restore deleted user
+        if((Auth::user())->ability('admin|dataEntry')){
+
         $item = Item::withTrashed()->where('id',$id)->first();
         $item->restore();
         return redirect()->back();
+        }
+        else {
+            return view('dashboard.permission_denied');
+        }
+    }
+
+    public function export()
+    {
+        return Excel::download(new ItemsExport , 'Items.xlsx');
     }
 }
