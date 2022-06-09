@@ -29,4 +29,13 @@ class StoreRequest extends FormRequest
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is required.',
+            'image.required' => 'The image is required.',
+            'image.mimes' => 'The image type not supported.',
+        ];
+    }
 }

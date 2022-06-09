@@ -65,4 +65,13 @@
             <!-- END: Form Layout -->
         </div>
     </div>
+    @if($errors->any())
+        <div class="alert alert-danger show mb-2" role="alert">
+            <ul >
+                @foreach($errors->all() as $error)
+                <li> {{ $error }} </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection

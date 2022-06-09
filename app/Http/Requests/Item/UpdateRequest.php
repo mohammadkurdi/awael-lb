@@ -32,4 +32,13 @@ class UpdateRequest extends FormRequest
             'manual' => 'mimes:pdf|max:51,200'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is required.',
+            'specifications.required' => 'The specifications are required.',
+            'subcategory_id.required' => 'The subcategory is required.',
+        ];
+    }
 }

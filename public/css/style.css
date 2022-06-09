@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&display=swap");
+:root {
+  --main-color: #174b4b;
+  --secound-color: #c30e0e;
+}
+
+* {
+  font-family: "Fira Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* start header */
+.header {
+  -webkit-box-shadow: 0px 0px 10px #000000c5;
+          box-shadow: 0px 0px 10px #000000c5;
+}
+
+.header .search-bar {
+  cursor: pointer;
+}
+
+.header .search-hover {
+  border: none;
+  outline: none;
+  line-height: 0;
+  background-size: 22px;
+  background-position: 13px;
+  width: 0px;
+  height: 50px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.header .search-bar:hover .search-hover {
+  width: 200px;
+  border-bottom: 1px solid #c30e0e;
+}
+
+.navbar-nav a {
+  color: #3e6969;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  text-align: center;
+}
+
+.navbar-nav a:hover {
+  color: #3e6969bb;
+}
+
+.navbar-toggler {
+  border: none;
+  font-size: 30px;
+  color: #c30e0e;
+}
+
+hr.active-link {
+  border: none;
+  border-radius: 10px;
+  margin: 6px auto -25px;
+  height: 2px;
+  width: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: var(--secound-color);
+}
+
+hr.active,
+.nav-item:hover a hr.active-link {
+  width: 80%;
+}
+
+@media (max-width: 992px) {
+  hr.active-link {
+    margin: 8px auto 0;
+  }
+  hr.active,
+  .nav-item:hover a hr.active-link {
+    width: 30%;
+  }
+}
+
+/* start footer */
+footer {
+  background-color: var(--main-color);
+  -webkit-box-shadow: 0px 0px 10px #00000050;
+          box-shadow: 0px 0px 10px #00000050;
+  color: #fff !important;
+}
+
+footer a {
+  color: #fff !important;
+}
+
+.home-page section.intro {
+  height: 100vh;
+  background-image: url("../images/bg-intro.png");
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+}
+
+.home-page section.about {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-image: url("../images/bg-about.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.home-page section.about .about-text-wrapper {
+  padding-left: 10px;
+  margin-top: 30px;
+  border-left: 4px solid #c30e0e85;
+}
+
+.home-page section.about .about-text-wrapper .about-text {
+  background: #a643417c;
+  padding: 20px;
+  font-size: 20px;
+  line-height: 43px;
+}
+
+.home-page section.about .partners {
+  background-color: #ffffff7e;
+  margin: 100px auto;
+}
+
+.home-page section.about .partners h1 {
+  color: #487878;
+}
+
+.home-page section.about .partners .card-body {
+  border-radius: 20px;
+}
+
+.home-page section.about .partners .card-body p {
+  line-height: 28px;
+}
+
+.home-page section.about .partners .carousel-control {
+  color: red !important;
+  font-size: 4vw;
+}
+
+@media (min-width: 769px) {
+  html[lang="en"] .carousel-control-prev {
+    margin-left: -50px;
+  }
+  html[lang="en"] .carousel-control-next {
+    margin-right: -50px;
+  }
+  html[lang="ar"] .carousel-control-prev {
+    margin-right: -50px;
+  }
+  html[lang="ar"] .carousel-control-next {
+    margin-left: -50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel-inner .carousel-item > div {
+    display: none;
+  }
+  .carousel-inner .carousel-item > div:first-child {
+    display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+  .carousel-inner .carousel-item-right.active,
+  .carousel-inner .carousel-item-next {
+    -webkit-transform: translateX(33.333%);
+            transform: translateX(33.333%);
+  }
+  .carousel-inner .carousel-item-left.active,
+  .carousel-inner .carousel-item-prev {
+    -webkit-transform: translateX(-33.333%);
+            transform: translateX(-33.333%);
+  }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.about-page {
+  background-image: url("../images/bg-contact.png");
+  background-size: cover;
+  background-position: center;
+  padding-top: 100px;
+  padding-bottom: 140px;
+}
+/*# sourceMappingURL=style.css.map */

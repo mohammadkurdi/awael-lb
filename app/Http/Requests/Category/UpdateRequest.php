@@ -29,4 +29,10 @@ class UpdateRequest extends FormRequest
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is required.',
+        ];
+    }
 }

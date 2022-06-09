@@ -30,4 +30,12 @@ class StoreRequest extends FormRequest
             'category_id' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is required.',
+            'image.required' => 'The image is required.',
+        ];
+    }
 }

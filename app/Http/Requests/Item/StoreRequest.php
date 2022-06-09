@@ -27,10 +27,22 @@ class StoreRequest extends FormRequest
             //
             'name' => 'required',
             'specifications' => 'required',
-            'Subcategory_id' => 'required',
+            'subcategory_id' => 'required',
             'images.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
-            'data' => 'mimes:pdf',
-            'manual' => 'mimes:pdf'
+            'data' => 'required|mimes:pdf|max:51,200',
+            'manual' => 'required|mimes:pdf|max:51,200'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is required.',
+            'specifications.required' => 'The specifications are required.',
+            'subcategory_id.required' => 'The subcategory is required.',
+            'data.required' => 'The datasheet file is required.',
+            'manual.required' => 'The usermanual file is required.',
+            'image.required' => 'The image is required.',
         ];
     }
 }

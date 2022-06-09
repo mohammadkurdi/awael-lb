@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('photo')->default('uploads/users/awael.png');
+            $table->string('photo')->default('images/logo.png');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

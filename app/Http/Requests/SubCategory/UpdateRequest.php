@@ -30,4 +30,11 @@ class UpdateRequest extends FormRequest
             'category_id' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is required.',
+        ];
+    }
 }

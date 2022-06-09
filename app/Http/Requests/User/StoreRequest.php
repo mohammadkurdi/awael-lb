@@ -32,4 +32,14 @@ class StoreRequest extends FormRequest
             'photo' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'The name is required.',
+            'email.required' => 'The email is required.',
+            'password.required' => 'The password is required.',
+            'role.required' => 'The role is required.',
+        ];
+    }
 }

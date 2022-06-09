@@ -10,7 +10,7 @@
         <!-- BEGIN: Side Menu -->
         <nav class="side-nav">
             <a href="" class="intro-x flex items-center pl-5 pt-4">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="{{ asset('uploads/users/awael.png') }}">
+                <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="{{ asset('images/logo.png') }}">
                 <span class="hidden xl:block text-white text-lg ml-3">
                      <span class="font-medium">Awael-LB</span>
                 </span>
