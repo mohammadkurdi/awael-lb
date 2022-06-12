@@ -19,6 +19,6 @@ class ItemsExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return ["ID","Subategory_id", "Product name", "Specifications", "Created_at", "Updated_at"];
+        return ["ID","Subategory_id", "Product name", "Specifications", "Description", "Created_at", "Updated_at"];
     }
 }
