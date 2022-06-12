@@ -11,7 +11,7 @@ class Item extends Model
     use HasFactory; use SoftDeletes;
 
     protected $fillable = [
-        'name', 'specifications', 'Subcategory_id'
+        'name', 'specifications', 'subcategory_id', 'description'
     ];
 
     public function item_images()

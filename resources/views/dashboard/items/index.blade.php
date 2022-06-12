@@ -39,6 +39,7 @@
                         <th class="whitespace-nowrap">#</th>
                         <th class="whitespace-nowrap">Product image</th>
                         <th class="whitespace-nowrap">Product name</th>
+                        <th class="whitespace-nowrap">description</th>
                         <th class="whitespace-nowrap">Subcategory</th>
                         <th class="whitespace-nowrap">Category</th>
                         <th class="whitespace-nowrap text-center">Actions</th>
@@ -52,17 +53,17 @@
                             </td>
                             <td class="w-40">
                                 <div class="flex">
-                                    @foreach ($items_images as $item_image)
-                                        @if ($item->id === $item_image->item_id)
-                                        <div class="w-20 h-20 image-fit zoom-in">
-                                            <img class="tooltip rounded-full" src="{{ asset($item_image->image) }}">
-                                        </div>
-                                        @endif
-                                    @endforeach
+
+                                    <div class="w-20 h-20 image-fit zoom-in">
+                                        <img class="tooltip rounded-full" src="{{ asset($item->item_images->first()->image) }}">
+                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <a href="{{ route('item.show',$item->id) }}" class="font-medium whitespace-nowrap">{{ $item->name }}</a>
+                            </td>
+                            <td>
+                                <a  class="font-medium whitespace-nowrap">{{ $item->description }}</a>
                             </td>
                             <td>
                                 <a  class="font-medium whitespace-nowrap">{{ $item->Subcategory->name }}</a>

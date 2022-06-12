@@ -27,10 +27,11 @@ class StoreRequest extends FormRequest
             //
             'name' => 'required',
             'specifications' => 'required',
+            'description' => 'required',
             'subcategory_id' => 'required',
             'images.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
-            'data' => 'required|mimes:pdf|max:51,200',
-            'manual' => 'required|mimes:pdf|max:51,200'
+            'data' => 'required|mimes:pdf',
+            'manual' => 'required|mimes:pdf'
         ];
     }
 
@@ -39,6 +40,7 @@ class StoreRequest extends FormRequest
         return [
             'name.required' => 'The name is required.',
             'specifications.required' => 'The specifications are required.',
+            'description.required' => 'The description are required.',
             'subcategory_id.required' => 'The subcategory is required.',
             'data.required' => 'The datasheet file is required.',
             'manual.required' => 'The usermanual file is required.',

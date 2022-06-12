@@ -89,7 +89,9 @@ class UserController extends Controller
     {
         // show user
         $user = User::find($id);
-        return view('dashboard.users.show')->with('user',$user);
+        $role_user = DB::table('role_user')->where('user_id',$id)->first();
+        $role = Role::where('id',$role_user->role_id)->first();
+        return view('dashboard.users.show')->with('user',$user)->with('role',$role);
     }
 
 

@@ -67,14 +67,17 @@
                             </a>
                         </li>
                     </ul>
-                    <form class="text-danger mx-auto mx-lg-0 d-table mb-3 mb-lg-0" action="">
-                        <span class="search-bar mr-3">
-                            <input type="text" class="search-hover" name=""
-                                placeholder="{{ __('search here') }}..." />
-                            <i class="fa-solid fa-search"></i>
-                        </span>
-                        <a href="/lang/{{ __('ar') }}" title="{{app()->getLocale() == 'en' ? 'عربي' : 'English'}}"><img src="{{ asset('images/translation-2.svg') }}"
-                                width="26" alt=""></a>
+                    <form action="{{ route('site.search')}}" action="GET">
+                        <form class="text-danger mx-auto mx-lg-0 d-table mb-3 mb-lg-0" >
+                            <span class="search-bar mr-3">
+                                <input type="submit" hidden />
+                                <input type="text" class="search-hover" name="search"
+                                    placeholder="{{ __('search here') }}..." />
+                                <i class="fa-solid fa-search"></i>
+                            </span>
+                            <a href="/lang/{{ __('ar') }}" title="{{app()->getLocale() == 'en' ? 'عربي' : 'English'}}"><img src="{{ asset('images/translation-2.svg') }}"
+                                    width="26" alt=""></a>
+                        </form>
                     </form>
                 </div>
             </nav>

@@ -17,4 +17,10 @@ class SearchController extends Controller
         $items = Item::where('name','Like', '%'.$request->search.'%')->get();
         return view('dashboard.search')->with('categories',$categories)->with('subcategories',$subcategories)->with('items',$items);
     }
+
+    public function sitesearch(Request $request){
+
+        $items = Item::where('name','Like', '%'.$request->search.'%')->get();
+        return view('site.search')->with('items',$items);
+    }
 }

@@ -15,13 +15,14 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('Subcategory_id');
+            $table->unsignedInteger('subcategory_id');
             $table->string('name');
-            $table->string('specifications');
+            $table->string('description');
+            $table->longText('specifications');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('Subcategory_id')->references('id')->on('subcategories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onUpdate('cascade')->onDelete('cascade');
         });
 
         Schema::create('item_images', function (Blueprint $table) {

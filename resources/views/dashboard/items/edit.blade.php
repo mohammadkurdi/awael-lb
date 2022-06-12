@@ -22,12 +22,17 @@
                     <br>
                     <br>
                     <div>
-                        <label for="crud-form-1" class="form-label">specifications</label>
-                        <input id="crud-form-1" type="text" class="form-control w-full" placeholder="Input text" name="specifications" required value="{{ $item->specifications }}">
+                        <label for="crud-form-1" class="form-label">description</label>
+                        <input id="crud-form-1" type="text" class="form-control w-full" placeholder="Input text" name="description" required value="{{ $item->description }}">
                     </div>
                     <br>
                     <br>
-
+                    <div>
+                        <label for="crud-form-1" class="form-label">specifications</label>
+                        <textarea onInput="handleInput(event)" rows="10" class="form-control w-full" placeholder="Input text" name="specifications">{!! $item->specifications !!}</textarea>
+                    </div>
+                    <br>
+                    <br>
                     <div>
                         <label> Category</label>
                         <div class="mt-2">
@@ -89,4 +94,27 @@
             </ul>
         </div>
     @endif
+@endsection
+
+@section('script')
+<script>
+    let previousLength = 0;
+
+const handleInput = (event) => {
+  const bullet = "\u2022";
+  const newLength = event.target.value.length;
+  const characterCode = event.target.value.substr(-1).charCodeAt(0);
+
+  if (newLength > previousLength) {
+    if (characterCode === 10) {
+      event.target.value = `${event.target.value}${bullet} `;
+    } else if (newLength === 1) {
+      event.target.value = `${bullet} ${event.target.value}`;
+    }
+  }
+
+  previousLength = newLength;
+}
+</script>
+
 @endsection

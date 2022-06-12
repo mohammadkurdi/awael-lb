@@ -26,10 +26,11 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required',
             'specifications' => 'required',
-            'Subcategory_id' => 'required',
+            'subcategory_id' => 'required',
+            'description' => 'required',
             'images.*' => 'image|mimes:jpg,png,jpeg,gif,svg',
-            'data' => 'mimes:pdf|max:51,200',
-            'manual' => 'mimes:pdf|max:51,200'
+            'data' => 'mimes:pdf',
+            'manual' => 'mimes:pdf'
         ];
     }
 
@@ -38,6 +39,7 @@ class UpdateRequest extends FormRequest
         return [
             'name.required' => 'The name is required.',
             'specifications.required' => 'The specifications are required.',
+            'description.required' => 'The description are required.',
             'subcategory_id.required' => 'The subcategory is required.',
         ];
     }

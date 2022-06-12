@@ -22,6 +22,13 @@
 
                     <br>
                     <br>
+                    <div>
+                        <label for="crud-form-1" class="form-label">Description</label>
+                        <input id="crud-form-1" type="text" class="form-control w-full" placeholder="Input text" name="description" required value="{{ $Subcategory->description }}">
+                    </div>
+
+                    <br>
+                    <br>
 
                     <div>
                         <label>Main Category</label>

@@ -24,6 +24,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->string('name');
+            $table->longText('description');
             $table->string('image');
             $table->timestamps();
 

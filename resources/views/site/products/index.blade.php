@@ -61,7 +61,7 @@
             <h1 class="text-center text-white">{{ __('Categories') }}</h1>
             <div class="d-flex justify-content-center icon-container flex-wrap mt-5">
                 @foreach ($categories as $category)
-                    <a href="{{ route('site.subcategories',$category->id) }}" class="rounded-left">
+                    <a href="{{ route('site.subcategories',[ 'name'=>$category->name, 'id'=>$category->id]) }}" class="rounded-left">
                         <img src="{{ asset($category->image) }}" alt="">
                         <h6 class="text-center mt-4">{{ __($category->name) }}</h6>
                     </a>

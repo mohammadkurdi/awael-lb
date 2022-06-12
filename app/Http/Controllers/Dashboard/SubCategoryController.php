@@ -52,6 +52,7 @@ class SubcategoryController extends Controller
 
         $Subcategory = Subcategory::create([
             'name'        =>  $request->name,
+            'description'        =>  $request->description,
             'image'       =>  'uploads/subcategories/' . $newImage,
             'category_id' =>  $request->category_id,
         ]);
@@ -89,6 +90,7 @@ class SubcategoryController extends Controller
             $Subcategory->image = 'uploads/subcategories/'.$newImage;
         }
         $Subcategory->name = $request->name;
+        $Subcategory->description = $request->description;
         $Subcategory->category_id = $request->category_id;
         $Subcategory->save();
 

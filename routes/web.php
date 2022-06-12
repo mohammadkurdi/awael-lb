@@ -70,6 +70,8 @@ Route::prefix('admin')->group( function() {
         Route::get('/laratrust', function(){
             if((Auth::user())->hasRole('admin')){
                 return redirect('/laratrust');
+            } else {
+                return view('dashboard.permission_denied');
             }
         })->name('laratrust');
         // End Of Roles & Permissions routes
@@ -134,10 +136,12 @@ Route::controller(Site\SiteController::class)->group(function () {
     Route::get('/about', 'about')->name('site.about');
     Route::get('/contact', 'contact')->name('site.contact');
     Route::get('/categories', 'categories')->name('site.categories');
-    Route::get('/sub-categories/{id}', 'subcategories')->name('site.subcategories');
+    Route::get('/categories/{id}/{name}', 'subcategories')->name('site.subcategories');
+    Route::get('/subcategories/{id}/{name}', 'products')->name('site.products');
+    Route::get('/products/{id}', 'product')->name('site.product');
 
 });
 
-Route::view('/products/type', 'site.products.type');
-Route::view('/products/view/{product}', 'site.products.view');
 
+
+Route::get('resualt', [SearchController::class, 'sitesearch'])->name('site.search');

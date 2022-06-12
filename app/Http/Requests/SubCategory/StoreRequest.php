@@ -26,6 +26,7 @@ class StoreRequest extends FormRequest
         return [
             //
             'name' => 'required | max:255',
+            'description' => 'required',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'category_id' => 'required'
         ];
@@ -35,6 +36,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name.required' => 'The name is required.',
+            'description.required' => 'The description is required.',
             'image.required' => 'The image is required.',
         ];
     }

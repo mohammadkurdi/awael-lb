@@ -58,8 +58,9 @@ class ItemController extends Controller
         // store new item
         $item = Item::create([
             'name'     =>  $request->name,
+            'description'     =>  $request->description,
+            'subcategory_id'   =>  $request->subcategory_id,
             'specifications'    =>  $request->specifications,
-            'Subcategory_id'   =>  $request->Subcategory_id
         ]);
 
         // store all item images
@@ -137,8 +138,9 @@ class ItemController extends Controller
         $item = Item::find($id);
 
         $item->name = $request->name;
+        $item->description =  $request->description;
         $item->specifications =  $request->specifications;
-        $item->Subcategory_id =  $request->Subcategory_id;
+        $item->subcategory_id =  $request->subcategory_id;
         $item->save();
 
         if($request->has('images')){

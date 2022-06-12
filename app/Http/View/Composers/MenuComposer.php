@@ -24,6 +24,10 @@ class MenuComposer
 
     public function compose(View $view)
     {
+        if(request()->route()=== Null){
+            return view('dashboard.error_page');
+        }
+        else{
         $pageName = request()->route()->getName();
         $layout = $this->layout($view);
         $activeMenu = $this->activeMenu($pageName, $layout);
@@ -34,6 +38,7 @@ class MenuComposer
         $view->with('third_level_active_index', $activeMenu['third_level_active_index']);
         $view->with('page_name', $pageName);
         $view->with('layout', $layout);
+        }
     }
 
     /**

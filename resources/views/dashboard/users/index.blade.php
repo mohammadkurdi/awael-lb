@@ -28,13 +28,13 @@
                         $role_id = $role_user->role_id
                     @endphp
                 @endif
-            @foreach ($roles as $role)
-                @if ($role_id === $role->id)
-                    @php
-                        $role_name = $role->name
-                    @endphp
-                @endif
-            @endforeach
+                @foreach ($roles as $role)
+                    @if ($role_id === $role->id)
+                        @php
+                            $role_name = $role->name
+                        @endphp
+                    @endif
+                @endforeach
             @endforeach
             <div class="intro-y col-span-12 md:col-span-6">
                 <div class="box">
