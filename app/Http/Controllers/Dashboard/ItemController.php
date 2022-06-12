@@ -238,7 +238,7 @@ class ItemController extends Controller
     public function restore($id)
     {
         // restore deleted user
-        if((Auth::user())->ability('admin|dataEntry')){
+        if((Auth::user())->hasRole('admin|dataEntry')){
 
         $item = Item::withTrashed()->where('id',$id)->first();
         $item->restore();

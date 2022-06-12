@@ -52,13 +52,13 @@
                             </td>
                             <td class="table-report__action w-57 ">
                                 <div class="flex justify-center items-center">
-                                    @ability('admin|dataEntry')
+                                    @role('admin|dataEntry')
                                     <a class="flex items-center text-theme-31 mr-3" href="{{ route('item.restore',$item->id) }}">
                                         <i data-feather="external-link" class="w-5 h-5 mr-1"></i> Restore
                                     </a>
-                                    @endability
+                                    @endrole
 
-                                    @ability('admin|dataEntry')
+                                    @role('admin|dataEntry')
                                     <form action="{{ route('item.hdelete',$item->id) }}" method="POST" onsubmit="return confirm('Do you really want to delete this category?')">
                                         @csrf
                                         @method('DELETE')
@@ -68,7 +68,7 @@
                                             </button>
                                         </a>
                                     </form>
-                                    @endability
+                                    @endrole
 
                                 </div>
                             </td>
